@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>全屏轮播图</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    ol li,
+    ul li {
+        list-style: none;
+    }
+
+    #box {
+        width: 100%;
+        height: 600px;
+        position: relative;
+    }
+
+    #box .img-box {
+        height: 100%;
+        position: relative;
+    }
+
+    #box .img-box li {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        transition: all 1s;
+        opacity: 0;
+    }
+    #box .img-box li:first-child {
+        z-index: 1;
+        opacity: 1;
+    }
+
+    #box .img-box a {
+        display: block;
+        font-size: 100px;
+        height: 600px;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #box .img-box a img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #box .list-box {
+        position: absolute;
+        bottom: 0;
+        z-index: 2;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #box .list-box li {
+        width: 20px;
+        height: 20px;
+        background-color: #000;
+        border-radius: 50%;
+        float: left;
+        margin-right: 10px;
+    }
+
+    #box .list-box li:last-child {
+        margin-right: 0;
+    }
+
+    #box .box-btn button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        font-size: 50px;
+    }
+
+    #box .box-btn-left {
+        left: 0;
+    }
+
+    #box .box-btn-right {
+        right: 0;
+    }
+
+    #box .list-box li.active {
+        background-color: #fff;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul class="img-box">
+            <li style="background-color: red"><a href="javascript:;">1
+                    <!-- <img src="http://img11.360buyimg.com/cms/jfs/t3466/173/25856071/1428034/1b7cc12c/57fc6221Nab2cfb10.jpg" alt=""> --></a></li>
+            <li style="background-color: #ccc"><a href="javascript:;">2
+                    <!-- <img src="http://img.zcool.cn/community/01c8c859f04db5a801202b0c544b28.jpg@2o.jpg" alt=""> --></a></li>
+            <li style="background-color: yellow"><a href="javascript:;">3
+                    <!-- <img src="http://pic.90sjimg.com/back_pic/u/00/05/85/81/5603afa1dcf4b.jpg" alt=""> --></a></li>
+            <li style="background-color: pink"><a href="javascript:;">4
+                    <!-- <img src="http://img.zcool.cn/community/0111ff599a9b9d0000002129c6c8e1.jpg@2o.jpg" alt=""> --></a></li>
+        </ul>
+        <ul class="list-box">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="box-btn">
+            <button class="box-btn-left"> &lt; </button>
+            <button class="box-btn-right"> &gt; </button>
+        </div>
+    </div>
+    <script>
+    // 获取元素
+    function lbt(dom, option){
+        var box = document.querySelector(dom);
+        var imgArr = box.querySelectorAll('.img-box li');
+        var listArr = box.querySelectorAll('.list-box li');
+        var prev = box.querySelector('.box-btn-left');
+        var next = box.querySelector('.box-btn-right');
+        var timer = null;
+        var currentIndex = 0;
+        
+        for(var k = 0; k<imgArr.length; k++) {
+            imgArr[k].style.transition =  `all ${option.transition/1000}s`;
+        }
+        
+        function animate(currentIndex) {
+            for (var i = 0; i < imgArr.length; i++) {
+                imgArr[i].style.opacity = 0;
+                imgArr[i].style.zIndex = 0;
+                listArr[i].className = '';
+            }
+            listArr[currentIndex].className = 'active';
+            imgArr[currentIndex].style.opacity = 1;
+            imgArr[currentIndex].style.zIndex = 1;
+        }
+        function switchs(methods) {
+            if(methods == 'next') {
+                 currentIndex++;
+                if (currentIndex > 3) currentIndex = 0;
+            }
+            if(methods == 'prev') {
+                 currentIndex--;
+                if (currentIndex < 0) currentIndex = 3;
+            }
+            animate(currentIndex);
+        }
+        function btns() {
+            next.onclick = function(){
+                switchs('next');
+            }
+            prev.onclick = function(){
+               switchs('prev');
+            }
+        }
+
+        btns();
+        function autoplay() {
+            timer = setInterval(function() {
+                switchs('next');
+            }, 2000);
+            box.onmouseenter = function() {
+                clearInterval(timer);
+            }
+            box.onmouseleave = function() {
+                timer = setInterval(function() {
+                switchs('next');
+                }, 2000);
+            }
+        }
+        if(option.autoplay) {
+            autoplay();
+        }
+        function focus() {
+            for(var j = 0; j<listArr.length; j++){
+                listArr[j].index = j;
+                listArr[j].onclick = function(){
+                    currentIndex = this.index;
+                    animate(currentIndex);
+                }
+            }
+        }
+        focus();
+    }
+
+    lbt('#box', {
+        autoplay: true,
+        transition: 2000
+    });
+
+    // 当前页面的索引
+
+    // 把需要显示图片透明度设置为1 元素层级设为1；
+    // 不需要显示的图片透明度设置为0 元素层级设置为0；
+
+    // function animate(currentIndex) {
+    //     for (var i = 0; i < imgArr.length; i++) {
+    //         imgArr[i].style.opacity = 0;
+    //         imgArr[i].style.zIndex = 0;
+    //         listArr[i].className = '';
+    //     }
+    //     listArr[currentIndex].className = 'active';
+    //     imgArr[currentIndex].style.opacity = 1;
+    //     imgArr[currentIndex].style.zIndex = 1;
+    // }
+    // function switchs(methods) {
+    //     if(methods == 'next') {
+    //          currentIndex++;
+    //         if (currentIndex > 3) currentIndex = 0;
+    //     }
+    //     if(methods == 'prev') {
+    //          currentIndex--;
+    //         if (currentIndex < 0) currentIndex = 3;
+    //     }
+    //     animate(currentIndex);
+    // }
+    // next.onclick = function(){
+    //     switchs('next');
+    // }
+    // prev.onclick = function(){
+    //    switchs('prev');
+    // }
+    // timer = setInterval(function() {
+    //     switchs('next');
+    // }, 2000);
+    // box.onmouseenter = function() {
+    //     clearInterval(timer);
+    // }
+    // box.onmouseleave = function() {
+    //     timer = setInterval(function() {
+    //     switchs('next');
+    //     }, 2000);
+    // }
+    // for(var j = 0; j<listArr.length; j++){
+    //     listArr[j].index = j;
+    //     listArr[j].onclick = function(){
+    //         currentIndex = this.index;
+    //         animate(currentIndex);
+    //     }
+    // }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        text-decoration: none;
+    }
+
+    ol li,
+    ul li {
+        list-style: none;
+    }
+    .goods {
+        width: 220px;
+        height: 378px;
+        box-sizing: border-box;
+        padding: 4px;
+        border: solid 1px #ccc;
+
+    }
+    .goods-img {
+        width: 100%;
+        height:  210px;
+
+    }
+    .goods-img img {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    .goods-img-list {
+        height: 40px;
+        margin-top: 5px;
+    }
+    .goods-img-list ul li {
+        float: left;
+        border: solid 2px red;
+        width: 30px;
+        height: 30px;
+    }
+    .goods-img-list ul li img {
+        width: 100%;
+        height: 100%;
+    }
+    .goods-price {
+        height: 30px;
+        font-size: 0;
+        position: relative;
+    }
+
+    .goods-price span {
+        font-size: 14px;
+        color: red;
+    }
+    .goods-price span i{
+        font-size: 20px;
+        font-style: normal;
+    }
+    .goods-price div  {
+        position: absolute;
+        right: -10px;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+        color: #fff;
+        background: green;
+        text-align: center;
+        line-height: 30px;
+    }
+    .content {
+        width: 1180px;
+        margin: auto;
+    }
+    .goods-title h3 {
+        font-size: 12px;
+        color: #666;
+        line-height: 20px;
+        font-weight: 400;
+    }
+    .goods-store p {
+        font-size:  12px;
+        color:  #ccc;
+        line-height: 20px;
+    }
+    .goods-other {
+        height: 33px;
+        line-height: 33px;
+        border-top: solid 1px #ccc;
+        font-size: 0;
+        margin-top: 5px;
+    }
+
+    .goods-other span:nth-child(1) {
+        display: inline-block;
+        font-size: 12px;
+        color: #666;
+        line-height: 33px;
+        width: 85px;
+        border-right: solid 1px #ccc;
+    }
+    .goods-other span:nth-child(1) i,
+    .goods-other span:nth-child(2) i{
+        margin-left: 3px;
+    }
+    .goods-other span:nth-child(2) {
+        display: inline-block;
+        line-height: 33px;
+        width: 85px;
+        border-right: solid 1px #ccc;
+        text-indent: 5px;
+        font-size: 12px;
+        color: #666;
+    }
+    .goods-other span:nth-child(3) img {
+        width: 16px;
+        height: 16px;
+
+    }
+    i {
+        font-style: normal;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="goods">
+            <div class="goods-img">
+                <img src="https://img.alicdn.com/bao/uploaded/i4/1045241527/O1CN01cNy3Ob1N9PIqQ6e5k_!!1045241527.jpg_b.jpg" alt="">
+            </div>
+            <div class="goods-img-list">
+                <ul>
+                    <li><img src="https://img.alicdn.com/bao/uploaded/i4/1045241527/O1CN01cNy3Ob1N9PIqQ6e5k_!!1045241527.jpg_b.jpg" alt=""></li>
+                </ul>
+            </div>
+            <div class="goods-price">
+                <span>￥<i>12.00</i></span>
+                <div class="goods-new">新品</div>
+            </div>
+            <div class="goods-title">
+                <h3>图裔白色春夏字母宽松韩版t恤</h3>
+            </div>
+            <div class="goods-store">
+                <p>图裔旗舰店</p>
+            </div>
+            <div class="goods-other">
+                <span>月成交<i>1笔</i></span>
+                <span>评价<i>2</i></span>
+                <span><img src="https://img.alicdn.com/tps/i1/T11lggFoXcXXc1v.nr-93-93.png" alt=""></span>
+            </div>
+        </div>
+    </div>
+    <script></script>
+</body>
+
+</html>

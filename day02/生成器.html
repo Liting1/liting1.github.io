@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>生成器</title>
+</head>
+<body>
+	<h1>异步管理</h1>
+	<script>
+		// 回调函数版
+		/*var a = 1;
+		function add(fn) {
+			var timer = setTimeout(function(){
+				a *= 2;
+				fn(a)
+			},2000);
+		}
+		add(fn)
+		function fn(q){
+			console.log(a);
+		}*/
+		
+		// promise 版
+		/*var a = 1;
+		function add() {
+			return new Promise(function(resolve, reject){
+				var timer = setTimeout(function(){
+					a *= 2;
+					resolve(a);
+				},1000);
+			})
+		}
+
+		add().then(function(res){
+			console.log(res);
+		}).catch(function(err){
+			console.log(err);
+		})*/
+
+		// 生成器版
+		/*var a = 1;
+		function add() {
+			var timer = setTimeout(function(){
+				a *= 2;
+				it.next(a);
+			},1000);
+		}
+
+		function *main(){
+			var k = yield add();
+			console.log(k);
+		}
+
+		var it = main()
+		it.next();*/
+
+		// async await 版
+		var a = 1;
+		function add() {
+			return new Promise(function(resolve, reject){
+				var timer = setTimeout(function(){
+					a *= 2;
+					resolve(a);
+				},1000);
+			})
+		}
+
+		(async function(){
+			var k = await add();
+			console.log(k);
+			var m = await add();
+			console.log(m);
+			var n = await add();
+			console.log(n);
+		})();
+
+
+	</script>
+</body>
+</html>

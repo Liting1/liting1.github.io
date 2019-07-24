@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .box {
+        width: 300px;
+        height: 300px;
+        background-color: #ccc;
+        position: relative;
+    }
+
+    span {
+        position: absolute;
+        left: 0;
+        top: 100px;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        display: none;
+        z-index: 1;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 当需要显示的元素在元素的的外面时 就会发生闪烁 -->
+    <div class="box">
+        <span></span>
+    </div>
+    <script>
+    var box = document.querySelector('.box');
+    var span = document.querySelector('span');
+    box.onmouseenter = function() {
+        span.style.display = 'block';
+    }
+
+    box.onmouseleave = function() {
+        span.style.display = 'none';
+        console.log(123)
+    }
+    </script>
+</body>
+
+</html>

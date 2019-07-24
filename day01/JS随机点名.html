@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			width: 900px;
+			margin:  auto;
+		}
+		.container {
+			border: 1px solid #000;
+			overflow: hidden;
+		}
+		h1 {
+			text-align: center;
+		}
+		.container span {
+			display: block;
+			width: 100px;
+			height: 40px;
+			float: left;
+			text-align: center;
+			line-height: 40px;
+		}
+		.container .active {
+			background-color: pink;
+			color: #fff;
+		}
+		.box button {
+			line-height: 30px;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+<div class="box">
+	<h1>h5-1811</h1>
+	<div class="container"></div>
+	<button>开始</button>
+</div>
+	<script>
+	// 创建数组的方法
+	var arr = [
+		"陈聪", "韦秀贤", "卢连敏", "陈渝元", "王艳", "段建国", "周建帅", "卜锦梅", "李关瑞",
+		"刘辉", "周应威", "覃柱泉", "杨其雄", "周雨彤", "杨金宝", "吴敏", "张鹏达", "梁金城",
+		"袁家建", "曾晓添", "李志豪", "黄理强", "邓春生", "陈滨", "刘杰", "康庆峰",
+		"刘德财", "洪楚铭", "何岳洲", "宋伊哲", "张峰", "张海钊", "王明勇", "莫斯杰", "曾朝伟",
+		"伍思宇", "汤华斌", "吕铭浩", "凌小连 ", "赵麟辉", "李健健", "郑若涵",
+		"杨凯彬", "杨尚彬", "王林燕", "黄雄辉", "陈镕佳", "马力", "梁兴晖", "林俊金",
+		"林艺", "赵福杰", "黄钊明", "雷国兵", "梁嘉勇", "江佳沛", "宋福东", 
+		"肖荣彬", "梁梓棚", "李林生", "张岸错", "陈志华", "陈培林", "谢剑青", "陆常青"
+	];
+	var str = arr.map(function(item){
+		return "<span>"+ item +"</span>";
+	}).join('');
+	var container = document.querySelector('.container');
+	container.innerHTML = str;
+	var spans = container.querySelectorAll('span');
+	function name() {
+		var time = 0;
+		var timer = setInterval(function(){
+			for(var i = 0; i<spans.length; i++)
+				spans[i].className = "";
+			var round = parseInt(Math.random()*arr.length);
+			spans[round].className = 'active';
+			time+=50;
+			if(time == 10000)
+				clearInterval(timer);
+		},time);
+	}
+	var button = document.querySelector('button');
+	button.onclick = function() {
+		name()
+	}
+	</script>
+</body>
+</html>

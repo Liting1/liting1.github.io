@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>加入购物车</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			height: 3000px;
+			/* overflow: hidden; */
+		}
+		.btn {
+			/* border: 1px solid #000; */
+			margin-left: 1000px;
+			margin-top: 400px;
+		}
+		.btn button {
+			padding: 10px;
+			cursor: pointer;
+		}
+		.btn span {
+			display: none;
+			position: fixed;
+		}
+		.cart {
+			position: fixed;
+			right: 0;
+			top: 200px;
+			border: solid 1px #ccc;
+			padding: 10px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="btn">
+		<button>a</button>
+		<!-- <span>图片</span> -->
+	</div>
+	<div class="cart">b</div>
+	<script>
+		var btn = document.querySelector('.btn button');
+		var cart = document.querySelector('.cart');
+		// var img = document.querySelector('.btn span');
+		function t(a){
+			return Math.pow(a,2);
+		}
+		var x1 = cart.offsetLeft; // 购物相对浏览器的X坐标
+		var y1 = cart.offsetTop; // 购物车相对浏览器的Y坐标
+		// console.log(m3, n3);
+		// 给加入购物车按钮绑定事件
+		btn.onclick = function(ev){
+			ev = ev || event;
+
+			var x2 = ev.clientX;
+			var y2 = ev.clientY;
+			// 计算顶点坐标
+			
+			var x3 = x2+(x1-x2)/2;
+			var y3 = 0;
+
+			// 点击按钮显示小图片
+			var img = document.createElement('span');
+			document.body.appendChild(img);
+			img.innerHTML = '图片';
+			img.style.position = 'fixed';
+			img.style.left = x2 + 'px';
+			img.style.top = y2 + 'px';
+			
+			// 设置动画曲线 y = ax2+bx+c;
+			var fenzi = (t(x2)-t(x3))*(y1-y2) - (t(x1)-t(x2))*(y2-y3);
+			var fenmu = (t(x2)-t(x3))*(x1-x2) - (t(x1)-t(x2))*(x2-x3);
+			var b = fenzi/fenmu;
+			var a = (y1-y2-b*(x1-x2))/(t(x1)-t(x2));
+			var c = y1 - a*t(x1)-b*x1;
+					
+			var timer = setInterval(function(){
+				x2+=5; // 设置动画运动的步长
+				var y = a*t(x2) + b*x2 + c;
+				img.style.left = x2 + 'px';
+				img.style.top = y + 'px';
+				if(x2 >= x1) {
+					clearInterval(timer);
+					document.body.removeChild(img);
+				}
+			},10);
+		} 
+	</script>
+</body>
+</html>

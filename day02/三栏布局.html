@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		html, body , .box {
+			height: 100%;
+		}
+		.left {
+			width: 200px;
+			height: 100%;
+			background-color: red;
+			float: left;
+		}
+		.right {
+			width: 200px;
+			float: right;
+			height: 100%;
+			background-color: blue;
+		}
+		.content {
+			/* width: 100%; */
+			height: 100%;
+			overflow: hidden;
+			/* margin-right: 200px; */
+			background-color: yellow;
+			/*background: url('https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=755560128,2887021978&fm=173&app=49&f=JPEG?w=640&h=379&s=A572709558407C4D4C9A95D00300F0BF') no-repeat;*/
+			/*background-size: 100% auto;*/
+			display: flex;
+			/*justify-content: center;*/
+			/*justify-content: space-between;*/
+			justify-content: space-around;
+			/* 侧轴对齐方式 */
+			align-items: flex-start; 
+			flex-wrap: wrap;
+			/*align-content: space-around;*/
+		}
+		.content .a {
+			width: 100px;
+			height: 100px;
+			/*background-color: #000;*/
+			border: solid 1px #000;
+		}
+	</style>
+</head>
+<body>
+<div></div>
+<p>
+	<span>
+		
+	</span>
+</p>
+	<div class="box">
+		<div class="left"></div>
+		<div class="right"></div>
+		<div class="content">
+			<div class="a"></div>
+			<div class="a"></div>
+			<div class="a"></div>
+			<div class="a"></div>
+			<div class="a"></div>
+			<div class="a"></div>
+			<div class="a"></div>
+			<div class="a"></div>
+			<div class="a"></div>
+			<div class="a"></div>
+		</div>
+	</div>
+</body>
+</html>

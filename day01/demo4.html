@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul li {
+            list-style: none;
+        }
+        body {
+            height: 1000px;
+        }
+        .container {
+            margin-left: 100px;
+            margin-top: 200px;
+        }
+        .magnify-box {
+            width: 450px;
+            height: 450px;
+            position: relative;
+        }
+        .min-img {
+            border: solid 1px #000;
+            width: 450px;
+            height: 450px;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .min-img img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .max-img {
+            width: 355.50px;
+            height: 355.50px;
+            overflow: hidden;
+            position: absolute;
+            left: 452px;
+            top: 20px;
+            display: none;
+        }
+        .max-img img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .mask {
+            width: 200px;
+            position: absolute;
+            height: 200px;
+            left: 0;
+            top: 0;
+            background: rgba(0,0,0,.3);
+            display: none;
+        }
+        .img-list {
+            width: 450px;
+            height: 100px;
+            box-sizing: border-box;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+        .img-list ul {
+            overflow: hidden;
+
+        }
+        .img-list ul li {
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            border-right: 1px solid #000;
+            border-left: solid 1px #000;
+            box-sizing: border-box;
+
+        }
+        .img-list ul li img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="magnify-box">
+            <div class="min-img">
+                <img src="./images/min1.jpg">
+                <div class="mask"></div>
+            </div>
+            <div class="max-img">
+                <img src="./images/max1.jpg">
+            </div>
+        </div>
+        <div class="img-list">
+            <ul>
+                <li><img src="./images/min1.jpg" alt=""></li>
+                <li><img src="./images/min2.jpg" alt=""></li>
+                <li><img src="./images/min3.jpg" alt=""></li>
+                <li><img src="./images/min4.jpg" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 
+        要使放大比例正常
+        则需满足一下条件
+        黑色遮罩的宽高 / 小图片的宽高 == 大图片可见宽高/ 大图片的宽高
+        mask / minImg == maxImg / max
+    -->
+    <script>
+        // 获取元素 
+        var magnify = document.querySelector('.magnify-box');
+        var minBox = document.querySelector('.min-img');
+        var minImg = document.querySelector('.min-img img');
+        var mask = document.querySelector('.mask');
+        var maxBox = document.querySelector('.max-img');
+        var maxImg = document.querySelector('.max-img img');
+
+        minBox.onmouseenter = function(){
+            mask.style.display = 'block';
+            maxBox.style.display = 'block';
+        }
+
+        minBox.onmousemove = function(ev){
+            var x = (ev.pageX - magnify.offsetLeft) - mask.offsetWidth/2;
+            var y = (ev.pageY - magnify.offsetTop) - mask.offsetHeight/2;
+            // 遮罩x方向运动的最大距离
+            var maxX = minBox.offsetWidth - mask.offsetWidth;
+            // 遮罩y方向运动的最大距离
+            var maxY = minBox.offsetHeight - mask.offsetHeight;
+            if(x>maxX) {
+                x = maxX;
+            };
+            if(y>maxY) {
+                y = maxY;
+            }
+            if(x<=0) {
+                x = 0;
+            }
+            if(y<=0) {
+                y = 0;
+            }
+
+            mask.style.left = x + 'px';
+            mask.style.top = y + 'px';
+            
+            var biliX = (maxImg.offsetWidth - maxBox.offsetWidth)/ maxX;
+            var biliY = (maxImg.offsetHeight - maxBox.offsetHeight)/ maxY;
+            maxImg.style.left = -x* biliX + 'px';
+            maxImg.style.top = -y* biliY + 'px';
+        }
+
+        minBox.onmouseleave = function(){
+            mask.style.display = 'none';
+            maxBox.style.display = 'none';
+        }
+
+        var imgList = document.querySelectorAll('.img-list li');
+
+        for(var i = 0; i< imgList.length; i++){
+            (function(i){
+                imgList[i].onclick = function(){
+                    minImg.src = `./images/min${i+1}.jpg`;
+                    maxImg.src = `./images/max${i+1}.jpg`;
+                }
+            })(i)
+        }
+    </script>
+</body>
+</html>
