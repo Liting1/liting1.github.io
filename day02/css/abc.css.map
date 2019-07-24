@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,IAAK;EAIJ,KAAK,EAHD,IAAI;EAIR,MAAM,EAHF,KAAK;EAIT,KAAK,EAAE,IAAI;EACX,gBAAgB,EAJZ,GAAG;EAKP,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,IAAI;;AAElB,CAAK;EACJ,WAAW,EAAE,IAAI;EACjB,KAAK,EAAE,GAAG",
-"sources": ["file:///C:/Users/Administrator/Desktop/demo/html/sass/abc.scss"],
-"names": [],
-"file": "abc.css"
-}
