@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理系统</title>
+	<link rel="stylesheet" href="./css/index.css">
+	<script src="./js/jquery.js"></script>
+	<script>
+		$(function(){
+
+			var str1 =`<span></span>`;
+
+			// 侧边栏切换
+			$('.main-bar-list>a').click(function(){
+				var index = $('.main-bar-list>a').index(this);
+				$('.main-list-item').css('display','none');
+				// 点击获取数据
+					$.ajax({
+						url:'',
+						data: {
+							index: index
+						},
+						success(data) {
+							// data 是一个字符串
+							// JSON.parse
+							// innerHTML
+							console.log(data);
+							
+							$('.main-list-item').eq(index).html(str1);
+						},
+						error(err) {
+							console.log(err);
+						}
+					})
+					$('.main-list-item').eq(index).css('display','block');
+
+			});
+				// main区块的切换
+			$('.header-nav ul li a').click(function(){
+				var index = $('.header-nav ul li a').index(this);
+				$('.main-box').css('display', 'none');
+				$('.main-box').eq(index).css('display','block');
+			})
+		})
+	</script>
+</head>
+<body>
+	<!-- header start -->
+		<header class="header">
+			<div class="header-top">
+				<div class="header-top-left">
+					<h1 class="header-logo"></h1>
+					<div class="header-btn"><button></button></div>
+					<div class="header-user">
+						<div class="header-img">
+							<img src="http://s1.sinaimg.cn/mw690/004cHXAAgy71aiAAx4Q90&690">
+							<span>2</span>
+						</div>
+						<div class="header-username">admin</div>
+					</div>
+				</div>
+				<div class="header-top-right">
+					<ul>
+						<li class="header-right-btn"><a href="#"><span></span>皮肤<span></span></a></li>
+						<li>桌面</li>
+						<li>设置</li>
+						<li>帮助</li>
+						<li><span></span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="header-nav">
+				<ul>
+					<li><span></span></li>
+					<li><a href="javascript:;">平台管理</a></li>
+					<li><a href="javascript:;">系统管理</a></li>
+					<li><a href="javascript:;">安全管理</a></li>
+					<li><a href="javascript:;">数据中心</a></li>
+					<li><a href="javascript:;">表单管理</a></li>
+					<li><a href="javascript:;">流程管理</a></li>
+					<li><a href="javascript:;">交流中心</a></li>
+					<li><a href="javascript:;">企业邮箱</a></li>
+					<li><a href="javascript:;">个人设置</a></li>
+					<li><a href="javascript:;">交流中心</a></li>
+				</ul>
+				<div class="header-nav-btn">
+					<span></span><span></span>
+				</div>
+			</div>
+		</header>
+	<!-- header end -->
+
+	<!-- main start -->
+		<main class="main">
+			<div class="main-bar">
+				<ul>
+					<li><a href="#"><span></span>安全管理<span></span></a></li>
+					<li class="main-bar-list">
+						<a href="javascript:;"><span></span>新闻管理</a>
+						<ul class="main-list-item">
+							<li><a href="#"><span></span>工作安排</a></li>
+							<li><a href="#"><span></span>工作安排</a></li>
+							<li><a href="#"><span></span>工作安排</a></li>
+						</ul>
+					</li>
+					<li class="main-bar-list">
+						<a href="javascript:;"><span></span>新闻管理</a>
+						<ul class="main-list-item">
+							<li><a href="#"><span></span>工作安排</a></li>
+							<li><a href="#"><span></span>工作安排</a></li>
+							<li><a href="#"><span></span>工作安排</a></li>
+						</ul>
+					</li>
+					<li class="main-bar-list">
+						<a href="#"><span></span>新闻管理</a>
+						<ul class="main-list-item">
+							<li><a href="#"><span></span>工作安排</a></li>
+							<li><a href="#"><span></span>工作安排</a></li>
+							<li><a href="#"><span></span>工作安排</a></li>
+						</ul>
+					</li>
+					<li class="main-bar-list">
+						<a href="#"><span></span>新闻管理</a>
+						<ul class="main-list-item">
+							<li><a href="#"><span></span>工作安排</a></li>
+							<li><a href="#"><span></span>工作安排</a></li>
+							<li><a href="#"><span></span>工作安排</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="main-content">
+				<div class="main-box" style="display:block">平台管理</div>
+				<div class="main-box">系统管理</div>
+				<div class="main-box">安全管理</div>
+				<div class="main-box">数据中心</div>
+				<div class="main-box">表单管理</div>
+				<div class="main-box">流程管理</div>
+				<div class="main-box">交流中心</div>
+			</div>
+		</main>
+	<!-- main end -->
+</body>
+</html>

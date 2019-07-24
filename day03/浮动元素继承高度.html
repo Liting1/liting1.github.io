@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			/* overflow: hidden; */
+			border: 1px solid #000;
+			/* height: auto; */
+		}
+		.box .one {
+			width: 200px;
+			height: 500px;
+			display: inline-block;
+			/* float: left; */
+			background-color: red;
+		}
+		.two {
+			/* float: right; */
+			width: 200px;
+			height: 100%;
+			display: inline-block;
+			background-color: blue;
+			/* height: auto; */
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="one"></div>
+		<div class="two"></div>
+	</div>
+	<script>
+		window.onload = function(){
+			document.querySelector('.two').style.height = '100%'
+			
+		}
+	</script>
+</body>
+</html>
