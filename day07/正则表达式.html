@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则表达式</title>
+
+</head>
+<body>
+	<input type="text" placeholder="请输入密码" id="pwd"><span class="info"></span>
+	<script>
+	// 		\b 单词边界
+	// 		\B 不是单词边界
+	// 		
+	// 		\d 所有数字
+	// 		\D 非数字
+	// 		
+	// 		\s 所有空白字符
+	// 		\S 非空白字符
+	// 		
+	// 		\w 字符 数字 下划线 汉字
+	// 		\W 不是数字字符下划线汉字
+	// 		
+	// 		.  除换行以外任意字符
+	// 		*  0次或多次
+	// 		+  1次或多次
+	// 		?  0次或1次
+	// 		^  以什么开头的字符串
+	// 		$  以什么结尾的字符串
+	// 		\  转义符号
+	// 		|  条件分支或者
+	// 		{n} n次
+	// 		{n,} n次及以上
+	// 		{n,m} n至m次
+	// 		()  分组  后向引用  \数字 代表分组
+	// 		(?'name'exp)|(?<name>exp) 分组的命名  后向引用  \name
+	// 		(?:exp)  不捕获匹配到的文本也不给分组
+	// 		(?=exp)  exp前面的位置
+	// 		(?<=exp) exp后面的位置
+	// 		(?!exp)  后面跟的不是exp的位置
+	// 		(?<!exp) 前面不是exp的位置
+	// 		(?#注释) 正则注释
+	// 		*?, +?, ??, {n,m}?, {n,}? 懒惰尽可能少的取匹配
+	// 		
+	// 		[^x] 除某些字符以外
+	// 		
+	// 		
+		// var str = `<p><span>1</span></p>
+		// 			<p><span>2</span></p>
+		// 			<p><span>3</span></p>
+		// 			<p><span>4</span></p>
+		// 			<p><span>5</span></p>
+		// 			<p><span>6</span></p>`;
+	// var str = 'abvavav'
+		// var s = str.match(/[0|1][1-9]{3}([\-/]\d{2}){2}\b/);
+		// var s = str.match(/(?:\w|[^<>])+(?=<)/);
+		// var s = str.match(/(?<=<(\w+)>).*(?=<\/)/g);
+
+		// var s = str.match(/(?:av)/)
+		// var s = str.match(/<[^<>]*(((<)[^<>]*)+((?\3>)[^<>]*)+)*(?(\3)(?!))>/)
+		// var s = str.match(/<p>[^.|.]*?<\/p>/g);
+		// a = str.replace(/(<p>[^.|.]*?<\/p>)/, '');
+		// console.log(a);
+
+		var input = document.querySelector('#pwd');
+		var info = document.querySelector('.info');
+		input.oninput = function(){
+			// 以数字和小写字母开头 六位~十六位
+			if(/^[0-9a-z]{6,15}/.test(input.value)) {
+				info.innerHTML = '较弱';
+			} else {
+				info.innerHTML = '';
+			}
+			// 必须包含大小字母
+			if(/(?=.*[A-Z])(?=.*[a-z])[0-9a-zA-Z]{6,15}/.test(input.value) && input.value.length>=6){
+				info.innerHTML = '较强';
+			}
+			if(/(?=.*[A-Z])(?=.*[a-z])(?=.*[$@$!%*#?&])[^]{6,15}/.test(input.value)){
+				info.innerHTML = '强';
+			}
+		}
+
+
+	</script>
+</body>
+</html>
